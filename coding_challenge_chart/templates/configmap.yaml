@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "coding_challenge_chart.fullname" . }}-config
+data:
+  config.json: |
+    {
+      "env": "{{ .Values.env }}",
+      "domain": "{{ if eq .Values.env "stage" }}rilldata.io{{ else if eq .Values.env "prod" }}rilldata.com{{ end }}"
+    }
